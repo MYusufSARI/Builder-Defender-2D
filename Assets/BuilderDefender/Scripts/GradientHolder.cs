@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GradientHolder : MonoBehaviour {
-
+public class GradientHolder : MonoBehaviour
+{
     [SerializeField] private Gradient gradient;
-
-
 }
