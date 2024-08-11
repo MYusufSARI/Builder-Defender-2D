@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     [Header(" Elements ")]
-    [SerializeField] private Transform mouseVisualTransform;
+    [SerializeField] private BuildingTypeSO buildingType;
     private Camera mainCamera;
 
 
@@ -18,7 +18,10 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        mouseVisualTransform.position = GetMouseWorldPosition();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(buildingType._prefab, GetMouseWorldPosition(), Quaternion.identity);
+        }
     }
 
 
