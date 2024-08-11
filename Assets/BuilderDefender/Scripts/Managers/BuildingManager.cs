@@ -5,14 +5,18 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     [Header(" Elements ")]
-    [SerializeField] private BuildingTypeSO buildingType;
     private Camera mainCamera;
+    private BuildingTypeListSO buildingTypeList;
+    private BuildingTypeSO buildingType;
 
 
 
     private void Start()
     {
         mainCamera = Camera.main;
+
+        buildingTypeList = (Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name));
+        buildingType = buildingTypeList._list[0];
     }
 
 
@@ -21,6 +25,16 @@ public class BuildingManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(buildingType._prefab, GetMouseWorldPosition(), Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            buildingType = buildingTypeList._list[0];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            buildingType = buildingTypeList._list[1];
         }
     }
 
