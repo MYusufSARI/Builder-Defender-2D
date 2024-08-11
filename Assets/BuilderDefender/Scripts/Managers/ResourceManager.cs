@@ -55,4 +55,10 @@ public class ResourceManager : MonoBehaviour
 
         TestLogResourceAmountDictionary();
     }
+
+
+    public int GetResourceAmount(ResourceTypeSO resourceType)
+    {
+        return resourceAmountDictionary[resourceType];
+    }
 }
