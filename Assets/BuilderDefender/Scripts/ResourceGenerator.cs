@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
+    [Header(" Elements ")]
+    private BuildingTypeSO buildingType;
+
+
     [Header(" Settings ")]
     private float _timer;
     private float timerMax;
@@ -12,7 +16,9 @@ public class ResourceGenerator : MonoBehaviour
 
     private void Awake()
     {
-        timerMax = 1f;
+        buildingType = GetComponent<BuildingTypeHolder>().buildingType;
+
+        timerMax = buildingType.resourceGeneratorData.timerMax;
     }
 
 
@@ -24,7 +30,7 @@ public class ResourceGenerator : MonoBehaviour
         {
             _timer += timerMax;
 
-            Debug.Log("Ding!");
+            ResourceManager.Instance.AddResource(buildingType.resourceGeneratorData.resourceType, 1);
         }
     }
 
