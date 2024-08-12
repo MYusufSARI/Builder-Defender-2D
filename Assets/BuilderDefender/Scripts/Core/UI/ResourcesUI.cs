@@ -11,9 +11,12 @@ public class ResourcesUI : MonoBehaviour
     private Dictionary<ResourceTypeSO, Transform> resourceTypeDictionary;
 
 
+    [Header(" Consts ")]
     private const string RESOURCE_TEMPLATE = "ResourceTemplate";
     private const string RESOURCE_IMAGE = "ResourceImage";
     private const string RESOURCE_TEXT = "ResourceText";
+
+
 
     private void Awake()
     {
