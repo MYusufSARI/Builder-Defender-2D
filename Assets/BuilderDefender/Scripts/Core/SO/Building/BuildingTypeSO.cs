@@ -10,4 +10,6 @@ public class BuildingTypeSO : ScriptableObject
     public Transform _prefab;
 
     public ResourceGeneratorData resourceGeneratorData;
+
+    public Sprite _sprite;
 }

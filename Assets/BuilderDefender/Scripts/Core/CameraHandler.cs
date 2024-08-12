@@ -26,7 +26,6 @@ public class CameraHandler : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-
         HandleZoom();
     }
 
@@ -40,7 +39,6 @@ public class CameraHandler : MonoBehaviour
         float moveSpeed = 30f;
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
-
     }
 
 

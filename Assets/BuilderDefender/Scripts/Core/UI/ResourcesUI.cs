@@ -11,6 +11,9 @@ public class ResourcesUI : MonoBehaviour
     private Dictionary<ResourceTypeSO, Transform> resourceTypeDictionary;
 
 
+    private const string RESOURCE_TEMPLATE = "ResourceTemplate";
+    private const string RESOURCE_IMAGE = "ResourceImage";
+    private const string RESOURCE_TEXT = "ResourceText";
 
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class ResourcesUI : MonoBehaviour
 
         resourceTypeDictionary = new Dictionary<ResourceTypeSO, Transform>();
 
-        Transform resourceTemplate = transform.Find("ResourceTemplate");
+        Transform resourceTemplate = transform.Find(RESOURCE_TEMPLATE);
 
         resourceTemplate.gameObject.SetActive(false);
 
@@ -33,7 +36,7 @@ public class ResourcesUI : MonoBehaviour
             float offsetAmount = -120f;
             resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
 
-            resourceTransform.Find("Image").GetComponent<Image>().sprite = resourceType._sprite;
+            resourceTransform.Find(RESOURCE_IMAGE).GetComponent<Image>().sprite = resourceType._sprite;
 
             resourceTypeDictionary[resourceType] = resourceTransform;
             
@@ -63,7 +66,7 @@ public class ResourcesUI : MonoBehaviour
             Transform resourceTransform = resourceTypeDictionary[resourceType];
 
             int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
-            resourceTransform.Find("Text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+            resourceTransform.Find(RESOURCE_TEXT).GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
         }
     }
 }
