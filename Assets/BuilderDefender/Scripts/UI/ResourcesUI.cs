@@ -10,6 +10,8 @@ public class ResourcesUI : MonoBehaviour
     private ResourceTypeListSO resourceTypeList;
     private Dictionary<ResourceTypeSO, Transform> resourceTypeDictionary;
 
+
+
     private void Awake()
     {
         resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
@@ -41,6 +43,14 @@ public class ResourcesUI : MonoBehaviour
 
 
     private void Start()
+    {
+        ResourceManager.onResourceAmountChanged += ResourceAmountChangedCallback;
+
+        UpdateResourceAmount();
+    }
+
+
+    private void ResourceAmountChangedCallback()
     {
         UpdateResourceAmount();
     }
