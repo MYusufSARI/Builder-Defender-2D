@@ -44,7 +44,11 @@ public class BuildingManager : MonoBehaviour
         {
             if (activeBuildingType != null && CanSpawnBuilding(activeBuildingType, UtilsClass.GetMouseWorldPosition()))
             {
-                Instantiate(activeBuildingType._prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+                if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
+                {
+                    ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
+                    Instantiate(activeBuildingType._prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+                }
             }
         }
     }
@@ -86,7 +90,7 @@ public class BuildingManager : MonoBehaviour
             // Colliders inside the construction radius
             BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
 
-            if (buildingTypeHolder !=null)
+            if (buildingTypeHolder != null)
             {
                 if (buildingTypeHolder.buildingType == buildingType)
                 {
