@@ -27,8 +27,6 @@ public class ResourceManager : MonoBehaviour
         {
             resourceAmountDictionary[resourceType] = 0;
         }
-
-        TestLogResourceAmountDictionary();
     }
 
 
@@ -39,8 +37,6 @@ public class ResourceManager : MonoBehaviour
             ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
 
             AddResource(resourceTypeList._list[0], 2);
-
-            TestLogResourceAmountDictionary();
         }
     }
 
@@ -49,7 +45,7 @@ public class ResourceManager : MonoBehaviour
     {
         foreach (ResourceTypeSO resourceType in resourceAmountDictionary.Keys)
         {
-            Debug.Log(resourceType.nameString + ": " + resourceAmountDictionary[resourceType]);
+            //Debug.Log(resourceType.nameString + ": " + resourceAmountDictionary[resourceType]);
         }
     }
 
@@ -59,8 +55,6 @@ public class ResourceManager : MonoBehaviour
         resourceAmountDictionary[resourceType] += amount;
 
         onResourceAmountChanged?.Invoke();
-
-        TestLogResourceAmountDictionary();
     }
 
 

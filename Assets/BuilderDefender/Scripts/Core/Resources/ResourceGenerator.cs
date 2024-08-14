@@ -22,6 +22,27 @@ public class ResourceGenerator : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, 5f);
+
+        int nearbyResourceAmount = 0;
+
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            ResourceNode resourceNode = collider2D.GetComponent<ResourceNode>();
+
+            if (resourceNode != null)
+            {
+                // It's a resource node!
+                nearbyResourceAmount++;
+            }
+        }
+
+        Debug.Log("NearbyResourceAmount: " + nearbyResourceAmount);
+    }
+
+
     private void Update()
     {
         _timer -= Time.deltaTime;
