@@ -14,4 +14,6 @@ public class BuildingTypeSO : ScriptableObject
     public Sprite _sprite;
 
     public float minConstructionRadius;
+
+    public float maxConstructionRadius;
 }
