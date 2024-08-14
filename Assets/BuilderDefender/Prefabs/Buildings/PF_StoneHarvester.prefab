@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4996956211010932937}
   - component: {fileID: 6919304873034879730}
-  - component: {fileID: 2780543598853399359}
   m_Layer: 0
   m_Name: Pickaxe
   m_TagString: Untagged
@@ -283,20 +282,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2780543598853399359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892554008395358508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ce0d3cb47e145e2a8faacf7adb02e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runOnce: 1
-  positionOffsetY: 0
 --- !u!1 &4166171909411414931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5439,7 +5424,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2279843789937224314}
   - component: {fileID: 5283455063841553407}
-  - component: {fileID: 7246562596748318099}
   m_Layer: 0
   m_Name: Pickaxe_2
   m_TagString: Untagged
@@ -5514,20 +5498,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7246562596748318099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346741521225020205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ce0d3cb47e145e2a8faacf7adb02e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runOnce: 1
-  positionOffsetY: 0
 --- !u!1 &7483812125931111611
 GameObject:
   m_ObjectHideFlags: 0

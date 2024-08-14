@@ -77,4 +77,22 @@ public class ResourceGenerator : MonoBehaviour
         }
     }
 
+
+    public ResourceGeneratorData GetResourceGeneratorData()
+    {
+        return resourceGeneratorData;
+    }
+
+
+    public float GetTimerNormalized()
+    {
+        return _timer / timerMax;
+    }
+
+
+    public float GetAmountGeneratedPerSecond()
+    {
+        return 1 / timerMax;
+    }
+
 }
