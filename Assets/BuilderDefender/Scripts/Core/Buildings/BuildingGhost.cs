@@ -28,6 +28,12 @@ public class BuildingGhost : MonoBehaviour
     }
 
 
+    private void OnDestroy()
+    {
+        BuildingManager.onActiveBuildingTypeChanged -= OnActiveBuildingTypeChangedCallback;
+    }
+
+
     private void OnActiveBuildingTypeChangedCallback(BuildingManager.OnActiveBuildingTypeChangedEvent onActiveBuildingTypeChangedEvent)
     {
         if (onActiveBuildingTypeChangedEvent.activeBuildingType == null)
