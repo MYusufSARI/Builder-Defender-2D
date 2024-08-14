@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraHandler : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     [Header(" Elements ")]
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
