@@ -72,11 +72,30 @@ public class BuildingManager : MonoBehaviour
 
         Collider2D[] collider2DArray = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0);
 
-        foreach (Collider2D collider2D in collider2DArray)
+        bool isAreClear = collider2DArray.Length == 0;
+
+        if (!isAreClear)
         {
-            // Colliders on top of the building position
+            return false;
         }
 
-        return collider2DArray.Length == 0;
+        collider2DArray = Physics2D.OverlapCircleAll(position, buildingType.minConstructionRadius);
+
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            // Colliders inside the construction radius
+            BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
+
+            if (buildingTypeHolder !=null)
+            {
+                if (buildingTypeHolder.buildingType == buildingType)
+                {
+                    // There is already a building of this type within the construction radius!
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
