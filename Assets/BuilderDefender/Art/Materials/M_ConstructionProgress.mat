@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ConstructionProgress
+  m_Name: M_ConstructionProgress
   m_Shader: {fileID: -6465566751694194690, guid: 27667d7a3b4bab643b2da7e5e27e5dfe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
