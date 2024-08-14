@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5877761172366299447}
   - component: {fileID: 1927085353329230327}
   m_Layer: 0
-  m_Name: pfTreeVisual
+  m_Name: PF_TreeVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

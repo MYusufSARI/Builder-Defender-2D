@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8273069244032577220}
   - component: {fileID: 2863524407459023943}
   m_Layer: 0
-  m_Name: pfWoodResourceNode
+  m_Name: PF_WoodResourceNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1138aeee53a45a8a2e4884d3d595ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceType: {fileID: 11400000, guid: 3d36a008a41ba41b595899344c26d4b9, type: 2}
 --- !u!1001 &2559885046502372540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,10 +96,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449833454533159523, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449833454533159523, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
+      propertyPath: positionOffsetY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5564227315590947109, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564227315590947109, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
+      propertyPath: positionOffsetY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5877761172366299447, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
@@ -143,14 +152,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022062374451328838, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022062374451328838, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
+      propertyPath: positionOffsetY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8468523860352147207, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468523860352147207, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
+      propertyPath: positionOffsetY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9130660998973113418, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130660998973113418, guid: e5d4607771922bd41abbbb7a46c8aa8e, type: 3}
+      propertyPath: positionOffsetY
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
