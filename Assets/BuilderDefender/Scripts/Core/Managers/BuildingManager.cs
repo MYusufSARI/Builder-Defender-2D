@@ -14,6 +14,15 @@ public class BuildingManager : MonoBehaviour
     private BuildingTypeSO activeBuildingType;
 
 
+    [Header(" Events ")]
+    public static Action<OnActiveBuildingTypeChangedEvent> onActiveBuildingTypeChanged;
+
+    public class OnActiveBuildingTypeChangedEvent
+    {
+        public BuildingTypeSO activeBuildingType;
+    }
+
+
 
     private void Awake()
     {
@@ -35,25 +44,19 @@ public class BuildingManager : MonoBehaviour
         {
             if (activeBuildingType != null)
             {
-                Instantiate(activeBuildingType._prefab, GetMouseWorldPosition(), Quaternion.identity);
+                Instantiate(activeBuildingType._prefab,UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
             }
         }
-    }
-
-
-    private Vector3 GetMouseWorldPosition()
-    {
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-        mouseWorldPosition.z = 0f;
-
-        return mouseWorldPosition;
     }
 
 
     public void SetActiveBuildingType(BuildingTypeSO buildingType)
     {
         activeBuildingType = buildingType;
+
+        onActiveBuildingTypeChanged?.Invoke(
+            new OnActiveBuildingTypeChangedEvent { activeBuildingType = activeBuildingType}
+            );
     }
 
 

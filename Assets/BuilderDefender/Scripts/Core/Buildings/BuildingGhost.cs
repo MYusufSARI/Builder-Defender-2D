@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,9 @@ public class BuildingGhost : MonoBehaviour
     private GameObject spriteGameObject;
 
 
-
     [Header(" Consts ")]
     private const string SPRİTE = "Sprite";
+
 
 
     private void Awake()
@@ -21,9 +22,29 @@ public class BuildingGhost : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        BuildingManager.onActiveBuildingTypeChanged += OnActiveBuildingTypeChangedCallback;
+    }
+
+
+    private void OnActiveBuildingTypeChangedCallback(BuildingManager.OnActiveBuildingTypeChangedEvent onActiveBuildingTypeChangedEvent)
+    {
+        if (onActiveBuildingTypeChangedEvent.activeBuildingType == null)
+        {
+            Hide();
+        }
+
+        else
+        {
+            Show(onActiveBuildingTypeChangedEvent.activeBuildingType._sprite);
+        }
+    }
+
+
     private void Update()
     {
-        
+        transform.position = UtilsClass.GetMouseWorldPosition();
     }
 
 
