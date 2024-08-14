@@ -7,16 +7,20 @@ public class BuildingGhost : MonoBehaviour
 {
     [Header(" Elements ")]
     private GameObject spriteGameObject;
+    private ResourceNearbyOverlay resourceNearbyOverlay;
 
 
     [Header(" Consts ")]
     private const string SPRİTE = "Sprite";
+    private const string RESOURCE_NEARBY_OVERLAY = "PF_ResourceNearbyOverlay";
 
 
 
     private void Awake()
     {
         spriteGameObject = transform.Find(SPRİTE).gameObject;
+
+        resourceNearbyOverlay = transform.Find(RESOURCE_NEARBY_OVERLAY).GetComponent<ResourceNearbyOverlay>();
 
         Hide();
     }
@@ -39,11 +43,13 @@ public class BuildingGhost : MonoBehaviour
         if (onActiveBuildingTypeChangedEvent.activeBuildingType == null)
         {
             Hide();
+            resourceNearbyOverlay.Hide();
         }
 
         else
         {
             Show(onActiveBuildingTypeChangedEvent.activeBuildingType._sprite);
+            resourceNearbyOverlay.Show(onActiveBuildingTypeChangedEvent.activeBuildingType.resourceGeneratorData);
         }
     }
 

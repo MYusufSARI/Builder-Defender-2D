@@ -14,17 +14,9 @@ public class ResourceGenerator : MonoBehaviour
 
 
 
-    private void Awake()
+    public static int GetNearbyResourceAmount(ResourceGeneratorData resourceGeneratorData, Vector3 position)
     {
-        resourceGeneratorData = GetComponent<BuildingTypeHolder>().buildingType.resourceGeneratorData;
-
-        timerMax = resourceGeneratorData.timerMax;
-    }
-
-
-    private void Start()
-    {
-        Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, resourceGeneratorData.resourceDetectionRadius);
+        Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(position, resourceGeneratorData.resourceDetectionRadius);
 
         int nearbyResourceAmount = 0;
 
@@ -46,6 +38,23 @@ public class ResourceGenerator : MonoBehaviour
         }
 
         nearbyResourceAmount = Mathf.Clamp(nearbyResourceAmount, 0, resourceGeneratorData.maxResourceAmount);
+
+        return nearbyResourceAmount;
+    }
+
+
+
+    private void Awake()
+    {
+        resourceGeneratorData = GetComponent<BuildingTypeHolder>().buildingType.resourceGeneratorData;
+
+        timerMax = resourceGeneratorData.timerMax;
+    }
+
+
+    private void Start()
+    {
+        int nearbyResourceAmount = GetNearbyResourceAmount(resourceGeneratorData, transform.position);
 
         if (nearbyResourceAmount == 0)
         {

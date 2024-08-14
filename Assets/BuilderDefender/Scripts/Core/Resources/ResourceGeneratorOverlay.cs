@@ -27,12 +27,12 @@ public class ResourceGeneratorOverlay : MonoBehaviour
 
         transform.Find(GOLD_ICON).GetComponent<SpriteRenderer>().sprite = resourceGeneratorData.resourceType._sprite;
 
-        transform.Find(TEXT).GetComponent<TextMeshPro>().SetText(resourceGenerator.GetAmountGeneratedPerSecond().ToString());
+        transform.Find(TEXT).GetComponent<TextMeshPro>().SetText(resourceGenerator.GetAmountGeneratedPerSecond().ToString("F1"));
     }
 
 
     private void Update()
     {
-        barTransform.localScale = new Vector3(resourceGenerator.GetTimerNormalized(), 1, 1);
+        barTransform.localScale = new Vector3(1- resourceGenerator.GetTimerNormalized(), 1, 1);
     }
 }
