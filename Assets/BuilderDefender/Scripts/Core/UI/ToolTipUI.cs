@@ -29,7 +29,7 @@ public class ToolTipUI : MonoBehaviour
 
         backgroundRectTransform = transform.Find(BACKGROUND).GetComponent<RectTransform>();
 
-        SetText("Hi There!");
+        Hide();
     }
 
 
@@ -60,5 +60,19 @@ public class ToolTipUI : MonoBehaviour
         Vector2 padding = new Vector2(8, 8);
 
         backgroundRectTransform.sizeDelta = textSize + padding;
+    }
+
+
+    public void Show(string toolTipText)
+    {
+        gameObject.SetActive(true);
+
+        SetText(toolTipText);
+    }
+
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
     private const string BUILDING_IMAGE = "BuildingImage";
     private const string BUTTON_TEMPLATE = "ButtonTemplate";
     private const string SELECTED = "Selected";
+    private const string ARROW = "Arrow";
 
 
 
@@ -49,6 +51,17 @@ public class BuildingTypeSelectUI : MonoBehaviour
             BuildingManager.Instance.SetActiveBuildingType(null);
         });
 
+        MouseEnterExitEvent mouseEnterExitEvent = arrowButton.GetComponent<MouseEnterExitEvent>();
+        mouseEnterExitEvent.OnMouseEnter += (object sender, EventArgs e) =>
+        {
+            ToolTipUI.Instance.Show(ARROW);
+        };
+
+        mouseEnterExitEvent.OnMouseExit += (object sender, EventArgs e) =>
+        {
+            ToolTipUI.Instance.Hide();
+        };
+
         index++;
 
 
@@ -68,6 +81,17 @@ public class BuildingTypeSelectUI : MonoBehaviour
             {
                 BuildingManager.Instance.SetActiveBuildingType(buildingType);
             });
+
+            mouseEnterExitEvent = buttonTransform.GetComponent<MouseEnterExitEvent>();
+            mouseEnterExitEvent.OnMouseEnter += (object sender, EventArgs e) =>
+            {
+                ToolTipUI.Instance.Show(buildingType.nameString + "\n" + buildingType.GetConstructşonResourceCostString());
+            };
+
+            mouseEnterExitEvent.OnMouseExit += (object sender, EventArgs e) =>
+            {
+                ToolTipUI.Instance.Hide();
+            };
 
             buttonTransformDictionary[buildingType] = buttonTransform;
 

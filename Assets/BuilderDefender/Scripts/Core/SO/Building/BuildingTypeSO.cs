@@ -18,4 +18,21 @@ public class BuildingTypeSO : ScriptableObject
     public float maxConstructionRadius;
 
     public ResourceAmount[] constructionResourceCostArray;
+
+
+
+
+    public string GetConstructşonResourceCostString()
+    {
+        string str = "";
+
+        foreach (ResourceAmount resourceAmount in constructionResourceCostArray)
+        {
+            str += "<color=#" + resourceAmount.resourceType.colorHex + ">" +
+                resourceAmount.resourceType.nameShort + resourceAmount._amount +
+                "</color> ";
+        }
+
+        return str;
+    }
 }
