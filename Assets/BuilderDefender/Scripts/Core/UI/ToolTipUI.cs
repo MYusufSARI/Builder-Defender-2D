@@ -5,6 +5,8 @@ using TMPro;
 
 public class ToolTipUI : MonoBehaviour
 {
+    public static ToolTipUI Instance { get; private set; }
+
     [Header(" Elements ")]
     [SerializeField] private RectTransform canvasRectTransform;
     private RectTransform backgroundRectTransform;
@@ -19,6 +21,8 @@ public class ToolTipUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         rectTransform = GetComponent<RectTransform>();
 
         textMeshPro = transform.Find(TEXT).GetComponent<TextMeshProUGUI>();
@@ -31,7 +35,19 @@ public class ToolTipUI : MonoBehaviour
 
     private void Update()
     {
-        rectTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
+        Vector2 anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
+
+        if (anchoredPosition.x + backgroundRectTransform.rect.width > canvasRectTransform.rect.width)
+        {
+            anchoredPosition.x = canvasRectTransform.rect.width - backgroundRectTransform.rect.width;
+        }
+
+        if (anchoredPosition.y + backgroundRectTransform.rect.height > canvasRectTransform.rect.height)
+        {
+            anchoredPosition.y = canvasRectTransform.rect.height - backgroundRectTransform.rect.height;
+        }
+
+        rectTransform.anchoredPosition = anchoredPosition;
     }
 
 
