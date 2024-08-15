@@ -12,6 +12,7 @@ public class ToolTipUI : MonoBehaviour
     private RectTransform backgroundRectTransform;
     private RectTransform rectTransform;
     private TextMeshProUGUI textMeshPro;
+    private TooltipTimer tooltipTimer;
 
 
     [Header(" Consts ")]
@@ -34,6 +35,22 @@ public class ToolTipUI : MonoBehaviour
 
 
     private void Update()
+    {
+        HandleFollowMouse();
+
+        if (tooltipTimer != null)
+        {
+            tooltipTimer._timer -= Time.deltaTime;
+
+            if (tooltipTimer._timer <=0)
+            {
+                Hide();
+            }
+        }
+    }
+
+
+    private void HandleFollowMouse()
     {
         Vector2 anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
 
@@ -63,16 +80,26 @@ public class ToolTipUI : MonoBehaviour
     }
 
 
-    public void Show(string toolTipText)
+    public void Show(string toolTipText, TooltipTimer tooltipTimer = null)
     {
+        this.tooltipTimer = tooltipTimer;
+
         gameObject.SetActive(true);
 
         SetText(toolTipText);
+
+        HandleFollowMouse();
     }
 
 
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+
+    public class TooltipTimer
+    {
+        public float _timer;
     }
 }

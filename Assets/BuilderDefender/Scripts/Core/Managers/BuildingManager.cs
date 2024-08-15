@@ -42,13 +42,28 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (activeBuildingType != null && CanSpawnBuilding(activeBuildingType, UtilsClass.GetMouseWorldPosition()))
+            if (activeBuildingType != null)
             {
-                if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
+                if (CanSpawnBuilding(activeBuildingType, UtilsClass.GetMouseWorldPosition(), out string errorMessage))
                 {
-                    ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
-                    Instantiate(activeBuildingType._prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+                    if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
+                    {
+                        ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
+                        Instantiate(activeBuildingType._prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+                    }
+
+                    else
+                    {
+                        ToolTipUI.Instance.Show("Cannot afford " + activeBuildingType.GetConstructşonResourceCostString(),
+                            new ToolTipUI.TooltipTimer { _timer = 2f });
+                    }
                 }
+
+                else
+                {
+                    ToolTipUI.Instance.Show(errorMessage, new ToolTipUI.TooltipTimer { _timer = 2f });
+                }
+
             }
         }
     }
@@ -70,7 +85,7 @@ public class BuildingManager : MonoBehaviour
     }
 
 
-    private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position)
+    private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position, out string errorMessage)
     {
         BoxCollider2D boxCollider2D = buildingType._prefab.GetComponent<BoxCollider2D>();
 
@@ -80,6 +95,7 @@ public class BuildingManager : MonoBehaviour
 
         if (!isAreClear)
         {
+            errorMessage = "Area is not clear!";
             return false;
         }
 
@@ -95,6 +111,7 @@ public class BuildingManager : MonoBehaviour
                 if (buildingTypeHolder.buildingType == buildingType)
                 {
                     // There is already a building of this type within the construction radius!
+                    errorMessage = "Too close to another building of the same type!";
                     return false;
                 }
             }
@@ -111,10 +128,11 @@ public class BuildingManager : MonoBehaviour
             if (buildingTypeHolder != null)
             {
                 // It's a building!
+                errorMessage = "";
                 return true;
             }
         }
-
+        errorMessage = "Too far from any other building!";
         return false;
     }
 }
