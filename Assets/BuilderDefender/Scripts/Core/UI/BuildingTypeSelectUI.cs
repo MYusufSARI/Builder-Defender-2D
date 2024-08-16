@@ -26,6 +26,57 @@ public class BuildingTypeSelectUI : MonoBehaviour
 
     private void Awake()
     {
+        ManageBuildingType();
+    }
+
+
+    private void Start()
+    {
+        BuildingManager.onActiveBuildingTypeChanged += OnActiveBuildingTypeChangedCallback;
+
+        UpdateActiveBuildingTypeButton();
+    }
+
+
+    private void OnDestroy()
+    {
+        BuildingManager.onActiveBuildingTypeChanged -= OnActiveBuildingTypeChangedCallback;
+    }
+
+
+    private void OnActiveBuildingTypeChangedCallback(BuildingManager.OnActiveBuildingTypeChangedEvent activeBuildingTypeChangedEvent)
+    {
+        UpdateActiveBuildingTypeButton();
+    }
+
+
+    private void UpdateActiveBuildingTypeButton()
+    {
+        arrowButton.Find(SELECTED).gameObject.SetActive(false);
+
+        foreach (BuildingTypeSO buildingType in buttonTransformDictionary.Keys)
+        {
+            Transform buttonTransform = buttonTransformDictionary[buildingType];
+
+            buttonTransform.Find(SELECTED).gameObject.SetActive(false);
+        }
+
+        BuildingTypeSO activeBuildingType = BuildingManager.Instance.GetActiveBuildingType();
+
+
+        if (activeBuildingType == null)
+        {
+            arrowButton.Find(SELECTED).gameObject.SetActive(true);
+        }
+        else
+        {
+            buttonTransformDictionary[activeBuildingType].Find(SELECTED).gameObject.SetActive(true);
+        }
+    }
+
+
+    private void ManageBuildingType()
+    {
         Transform buttonTemplate = transform.Find(BUTTON_TEMPLATE);
 
         buttonTemplate.gameObject.SetActive(false);
@@ -96,51 +147,6 @@ public class BuildingTypeSelectUI : MonoBehaviour
             buttonTransformDictionary[buildingType] = buttonTransform;
 
             index++;
-        }
-    }
-
-
-    private void Start()
-    {
-        BuildingManager.onActiveBuildingTypeChanged += OnActiveBuildingTypeChangedCallback;
-
-        UpdateActiveBuildingTypeButton();
-    }
-
-
-    private void OnDestroy()
-    {
-        BuildingManager.onActiveBuildingTypeChanged -= OnActiveBuildingTypeChangedCallback;
-    }
-
-
-    private void OnActiveBuildingTypeChangedCallback(BuildingManager.OnActiveBuildingTypeChangedEvent activeBuildingTypeChangedEvent)
-    {
-        UpdateActiveBuildingTypeButton();
-    }
-
-
-    private void UpdateActiveBuildingTypeButton()
-    {
-        arrowButton.Find(SELECTED).gameObject.SetActive(false);
-
-        foreach (BuildingTypeSO buildingType in buttonTransformDictionary.Keys)
-        {
-            Transform buttonTransform = buttonTransformDictionary[buildingType];
-
-            buttonTransform.Find(SELECTED).gameObject.SetActive(false);
-        }
-
-        BuildingTypeSO activeBuildingType = BuildingManager.Instance.GetActiveBuildingType();
-
-
-        if (activeBuildingType == null)
-        {
-            arrowButton.Find(SELECTED).gameObject.SetActive(true);
-        }
-        else
-        {
-            buttonTransformDictionary[activeBuildingType].Find(SELECTED).gameObject.SetActive(true);
         }
     }
 }
