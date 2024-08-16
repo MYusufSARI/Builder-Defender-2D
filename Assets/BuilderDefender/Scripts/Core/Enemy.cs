@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static Enemy Create(Vector3 position)
+    {
+        Transform pfEnemy = Resources.Load<Transform>("PF_Enemy");
+        Transform enemyTransform =  Instantiate(pfEnemy, position, Quaternion.identity);;
+
+        Enemy enemy = enemyTransform.GetComponent<Enemy>();
+
+        return enemy;
+    }
+
+
     [Header(" Elements ")]
     private Transform targetTransform;
     private Rigidbody2D rigidbody2D;
@@ -25,4 +36,18 @@ public class Enemy : MonoBehaviour
         rigidbody2D.velocity = moveDir * moveSpeed;
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Building building= collision.gameObject.GetComponent<Building>();
+
+        if (building != null)
+        {
+            // Collided with a building
+            HealthManager healthManager= building.GetComponent<HealthManager>();
+
+            healthManager.Damage(10);
+            Destroy(gameObject);
+        }
+    }
 }
