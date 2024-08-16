@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        ManageMoving();
+    }
+
+
+    private void ManageMoving()
+    {
         Vector3 moveDir = (targetTransform.position - transform.position).normalized;
         float moveSpeed = 6f;
 

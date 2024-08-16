@@ -42,6 +42,12 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
+        ManageSpawning();
+    }
+
+
+    private void ManageSpawning()
+    {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (activeBuildingType != null)
@@ -67,6 +73,13 @@ public class BuildingManager : MonoBehaviour
                 }
 
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 enemySpawnPosition = UtilsClass.GetMouseWorldPosition() + UtilsClass.GetRandomDirection() * 5f;
+
+            Enemy.Create(enemySpawnPosition);
         }
     }
 
