@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public static Enemy Create(Vector3 position)
     {
         Transform pfEnemy = Resources.Load<Transform>("PF_Enemy");
-        Transform enemyTransform =  Instantiate(pfEnemy, position, Quaternion.identity);;
+        Transform enemyTransform = Instantiate(pfEnemy, position, Quaternion.identity); ;
 
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
 
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
 
-        targetTransform =  BuildingManager.Instance.GetHQBuilding().transform;
+        targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
 
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
     }
@@ -38,29 +38,23 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        ManageMoving();
+        HandleMovement();
 
-        LookForTargetTimer();
+        HandleTargeting();
     }
 
 
-    private void ManageMoving()
-    {
-        Vector3 moveDir = (targetTransform.position - transform.position).normalized;
-        float moveSpeed = 6f;
-
-        rigidbody2D.velocity = moveDir * moveSpeed;
-    }
+    
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Building building= collision.gameObject.GetComponent<Building>();
+        Building building = collision.gameObject.GetComponent<Building>();
 
         if (building != null)
         {
             // Collided with a building
-            HealthManager healthManager= building.GetComponent<HealthManager>();
+            HealthManager healthManager = building.GetComponent<HealthManager>();
 
             healthManager.Damage(10);
             Destroy(gameObject);
@@ -68,38 +62,24 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void LookForTargets()
+    private void HandleMovement()
     {
-        float targetMaxRadius = 10f;
-
-        Collider2D[] collider2DArray= Physics2D.OverlapCircleAll(transform.position, targetMaxRadius);
-
-        foreach(Collider2D collider2D in collider2DArray)
+        if (targetTransform != null)
         {
-            Building building =  collider2D.GetComponent<Building>();
+            Vector3 moveDir = (targetTransform.position - transform.position).normalized;
 
-            if (building != null)
-            {
-                // It's a building!
-                if (targetTransform == null)
-                {
-                    targetTransform = building.transform;
-                }
-                else
-                {
-                    if (Vector3.Distance(transform.position, building.transform.position)<
-                        Vector3.Distance(transform.position, targetTransform.position))
-                    {
-                        // Closer!
-                        targetTransform = building.transform;
-                    }
-                }
-            }
+            float moveSpeed = 6f;
+            rigidbody2D.velocity = moveDir * moveSpeed;
+        }
+
+        else
+        {
+            rigidbody2D.velocity = Vector2.zero;
         }
     }
 
 
-    private void LookForTargetTimer()
+    private void HandleTargeting()
     {
         lookForTargetTimer -= Time.deltaTime;
 
@@ -110,4 +90,45 @@ public class Enemy : MonoBehaviour
             LookForTargets();
         }
     }
+
+
+    private void LookForTargets()
+    {
+        float targetMaxRadius = 10f;
+
+        Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, targetMaxRadius);
+
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            Building building = collider2D.GetComponent<Building>();
+
+            if (building != null)
+            {
+                // It's a building!
+                if (targetTransform == null)
+                {
+                    targetTransform = building.transform;
+                }
+                else
+                {
+                    if (Vector3.Distance(transform.position, building.transform.position) <
+                        Vector3.Distance(transform.position, targetTransform.position))
+                    {
+                        // Closer!
+                        targetTransform = building.transform;
+                    }
+                }
+            }
+        }
+
+        if (targetTransform == null)
+        {
+            // Found no target within range
+
+            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        }
+    }
+
+
+    
 }

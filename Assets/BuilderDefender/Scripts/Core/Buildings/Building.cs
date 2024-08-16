@@ -27,15 +27,6 @@ public class Building : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            healthManager.Damage(10);
-        }
-    }
-
-
     private void OnDiedCallback(object sender, EventArgs e)
     {
         Destroy(gameObject);
