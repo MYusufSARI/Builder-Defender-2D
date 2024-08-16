@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header(" Elements ")]
+    private Transform targetTransform;
+    private Rigidbody2D rigidbody2D;
+
+
+    private void Start()
     {
-        
+        rigidbody2D = GetComponent<Rigidbody2D>();
+
+        targetTransform =  BuildingManager.Instance.GetHQBuilding().transform;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
+        Vector3 moveDir = (targetTransform.position - transform.position).normalized;
+        float moveSpeed = 6f;
+
+        rigidbody2D.velocity = moveDir * moveSpeed;
     }
+
 }

@@ -9,9 +9,11 @@ public class BuildingManager : MonoBehaviour
     public static BuildingManager Instance { get; private set; }
 
     [Header(" Elements ")]
+    [SerializeField] private Building hqBuilding;
     private Camera mainCamera;
     private BuildingTypeListSO buildingTypeList;
     private BuildingTypeSO activeBuildingType;
+
 
 
     [Header(" Events ")]
@@ -134,5 +136,11 @@ public class BuildingManager : MonoBehaviour
         }
         errorMessage = "Too far from any other building!";
         return false;
+    }
+
+
+    public Building GetHQBuilding()
+    {
+        return hqBuilding;
     }
 }
