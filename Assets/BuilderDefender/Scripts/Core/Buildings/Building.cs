@@ -26,7 +26,7 @@ public class Building : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            healthManager.Damage(999);
+            healthManager.Damage(10);
         }
     }
 
