@@ -5012,6 +5012,8 @@ GameObject:
   - component: {fileID: 7854216190991508714}
   - component: {fileID: 4032518209665212170}
   - component: {fileID: 1219823556993895317}
+  - component: {fileID: 6959867152339106213}
+  - component: {fileID: 847122683737014258}
   m_Layer: 0
   m_Name: PF_WoodHarvester
   m_TagString: Untagged
@@ -5138,6 +5140,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.9540896, y: 4.91035}
   m_EdgeRadius: 0
+--- !u!114 &6959867152339106213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565715747615973154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805028615685a4461a5dc389214e4b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmountMax: 100
+--- !u!114 &847122683737014258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565715747615973154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04ba793b031c4513855dc69eaae5aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3654176723631551727
 GameObject:
   m_ObjectHideFlags: 0

@@ -5013,6 +5013,8 @@ GameObject:
   - component: {fileID: -2064139019703021189}
   - component: {fileID: -1319983610564286296}
   - component: {fileID: 2063774900460341668}
+  - component: {fileID: 2087128890716368008}
+  - component: {fileID: -5932686951612717741}
   m_Layer: 0
   m_Name: PF_GoldHarvester
   m_TagString: Untagged
@@ -5132,6 +5134,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.9540896, y: 4.91035}
   m_EdgeRadius: 0
+--- !u!114 &2087128890716368008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156701223262941850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805028615685a4461a5dc389214e4b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmountMax: 100
+--- !u!114 &-5932686951612717741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156701223262941850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04ba793b031c4513855dc69eaae5aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4530789051544615550
 GameObject:
   m_ObjectHideFlags: 0
