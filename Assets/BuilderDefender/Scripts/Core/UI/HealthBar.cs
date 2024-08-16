@@ -26,6 +26,7 @@ public class HealthBar : MonoBehaviour
         healthManager.OnDamaged += OnDamagedCallback;
 
         UpdateBar();
+        UpdateHealthBarVisible();
     }
 
 
@@ -38,11 +39,26 @@ public class HealthBar : MonoBehaviour
     private void OnDamagedCallback(object sender, EventArgs e)
     {
         UpdateBar();
+        UpdateHealthBarVisible();
     }
 
 
     private void UpdateBar()
     {
         barTransform.localScale = new Vector3(healthManager.GetHealthAmountNormalized(), 1, 1);
+    }
+
+
+    private void UpdateHealthBarVisible()
+    {
+        if (healthManager.IsFullHealth())
+        {
+            gameObject.SetActive(false);
+        }
+
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 }
