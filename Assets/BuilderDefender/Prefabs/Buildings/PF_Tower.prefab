@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e4617a5605d4082a63529e2b9bd64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootTimerMax: 0.3
 --- !u!1 &2700111055036164274
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6704082395425686389}
   m_Layer: 0
-  m_Name: eSpawnPositionnPosition
+  m_Name: ProjectileSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

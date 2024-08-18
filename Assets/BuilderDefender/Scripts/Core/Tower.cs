@@ -6,12 +6,25 @@ public class Tower : MonoBehaviour
 {
     [Header(" Elements ")]
     private Enemy targetEnemy;
+    private Vector3 projectileSpawnPosition;
 
 
     [Header(" Settings ")]
+    [SerializeField] private float shootTimerMax;
+    private float shootTimer;
     private float lookForTargetTimer;
     private float lookForTargetTimerMax = 0.2f;
 
+
+    [Header(" Consts ")]
+    private const string PROJECTILE_SPAWN_POSITION = "ProjectileSpawnPosition";
+
+
+
+    private void Awake()
+    {
+        projectileSpawnPosition = transform.Find(PROJECTILE_SPAWN_POSITION).position;
+    }
 
 
     private void Update()
@@ -37,9 +50,16 @@ public class Tower : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (targetEnemy != null)
+        shootTimer -= Time.deltaTime;
+
+        if (shootTimer <= 0f)
         {
-            ArrowProjectile.Create(transform.position, targetEnemy);
+            shootTimer += shootTimerMax;
+
+            if (targetEnemy != null)
+            {
+                ArrowProjectile.Create(projectileSpawnPosition, targetEnemy);
+            }
         }
     }
 

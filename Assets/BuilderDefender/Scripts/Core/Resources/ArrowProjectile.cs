@@ -20,14 +20,39 @@ public class ArrowProjectile : MonoBehaviour
     private Enemy targetEnemy;
 
 
+    [Header(" Settings ")]
+    private Vector3 lastMoveDir;
+    private float timeToDie =2f;
+
+
 
     private void Update()
     {
-        Vector3 moveDir = (targetEnemy.transform.position - transform.position).normalized;
+        Vector3 moveDir; 
+        if (targetEnemy != null)
+        {
+            moveDir = (targetEnemy.transform.position - transform.position).normalized;
+            lastMoveDir = moveDir;
+        }
+
+        else
+        {
+            moveDir = lastMoveDir;
+        }
 
         float moveSpeed = 20f;
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.position += lastMoveDir * moveSpeed * Time.deltaTime;
+
+        // Rotate the arrows towards to the enemys position
+        transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVector(moveDir));
+
+        timeToDie -= Time.deltaTime;
+
+        if (timeToDie < 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
