@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7811673292171596086}
   - component: {fileID: -4140997390597221809}
   - component: {fileID: -5350419250225503096}
+  - component: {fileID: 293126234309295392}
   m_Layer: 0
   m_Name: PF_Tower
   m_TagString: Untagged
@@ -36,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 7245586324731052653}
   - {fileID: 6869702214905998342}
+  - {fileID: 6704082395425686389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8462922547845154685
@@ -142,6 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ba793b031c4513855dc69eaae5aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &293126234309295392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609909751227243688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e4617a5605d4082a63529e2b9bd64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2700111055036164274
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +240,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3031091525335325870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6704082395425686389}
+  m_Layer: 0
+  m_Name: eSpawnPositionnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6704082395425686389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031091525335325870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 609909751227243689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2463673180903873554
 PrefabInstance:
   m_ObjectHideFlags: 0
