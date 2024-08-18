@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [Header(" Elements ")]
     private Transform targetTransform;
     private Rigidbody2D rigidbody2D;
+    private HealthManager healthManager;
 
 
     [Header(" Settings ")]
@@ -30,9 +31,25 @@ public class Enemy : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
 
+        healthManager = GetComponent<HealthManager>();
+
         targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
 
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
+
+        healthManager.OnDied += OnDiedCallback;
+    }
+
+
+    private void OnDestroy()
+    {
+        healthManager.OnDied -= OnDiedCallback;
+    }
+
+
+    private void OnDiedCallback(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
 

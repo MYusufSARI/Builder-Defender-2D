@@ -69,6 +69,9 @@ public class ArrowProjectile : MonoBehaviour
         if (enemy != null)
         {
             // Hit an enemy!
+            int damageAmount = 10;
+            enemy.GetComponent<HealthManager>().Damage(damageAmount);
+
             Destroy(gameObject);
         }
     }
