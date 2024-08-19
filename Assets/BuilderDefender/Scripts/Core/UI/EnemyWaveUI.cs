@@ -10,6 +10,8 @@ public class EnemyWaveUI : MonoBehaviour
     private TextMeshProUGUI waveNumberText;
     private TextMeshProUGUI waveMessageText;
     private RectTransform enemyWaveSpawnIndicator;
+    private RectTransform enemyClosestSpawnPositionIndicator;
+
     private Camera mainCamera;
 
 
@@ -21,6 +23,7 @@ public class EnemyWaveUI : MonoBehaviour
     private const string WAVE_NUMBER_TEXT = "WaveNumberText";
     private const string WAVE_MESSAGE_TEXT = "WaveMessageText";
     private const string ENEMY_WAVE_SPAWN_INDICATOR = "EnemyWaveSpawnIndicator";
+    private const string ENEMY_CLOSEST_POSITION_INDICATOR = "EnemyClosestPositionIndicator";
 
 
 
@@ -29,6 +32,7 @@ public class EnemyWaveUI : MonoBehaviour
         waveNumberText = transform.Find(WAVE_NUMBER_TEXT).GetComponent<TextMeshProUGUI>();
         waveMessageText = transform.Find(WAVE_MESSAGE_TEXT).GetComponent<TextMeshProUGUI>();
         enemyWaveSpawnIndicator = transform.Find(ENEMY_WAVE_SPAWN_INDICATOR).GetComponent<RectTransform>();
+        enemyClosestSpawnPositionIndicator = transform.Find(ENEMY_CLOSEST_POSITION_INDICATOR).GetComponent<RectTransform>();
     }
 
 
@@ -56,11 +60,15 @@ public class EnemyWaveUI : MonoBehaviour
 
     private void Update()
     {
-        ManageSpawnTimer();
+        ManageNextWaveMessage();
+
+        ManageEnemyWaveSpawnPosition();
+
+        ManageEnemyClosestPosition();
     }
 
 
-    private void ManageSpawnTimer()
+    private void ManageNextWaveMessage()
     {
         float nextWaveSpawnTimer = enemyWaveManager.GetNextWaveSpawnTimer();
 
@@ -73,7 +81,11 @@ public class EnemyWaveUI : MonoBehaviour
         {
             SetMessageText("Next Wave in " + nextWaveSpawnTimer.ToString("F1") + "s");
         }
+    }
 
+
+    private void ManageEnemyWaveSpawnPosition()
+    {
         Vector3 directionToNextSpawnPosition = (enemyWaveManager.GetSpawnPosition() - mainCamera.transform.position).normalized;
 
         enemyWaveSpawnIndicator.anchoredPosition = directionToNextSpawnPosition * 300f;
@@ -81,6 +93,56 @@ public class EnemyWaveUI : MonoBehaviour
 
         float distanceToNextSpawnPosition = Vector3.Distance(enemyWaveManager.GetSpawnPosition(), mainCamera.transform.position);
         enemyWaveSpawnIndicator.gameObject.SetActive(distanceToNextSpawnPosition > mainCamera.orthographicSize * 1.5f);
+    }
+
+
+    private void ManageEnemyClosestPosition()
+    {
+        float targetMaxRadius = 9999f;
+        
+        Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(mainCamera.transform.position, targetMaxRadius);
+
+        Enemy targetEnemy = null;
+
+        foreach (Collider2D collider2D in collider2DArray)
+        {
+            Enemy enemy = collider2D.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                // It's a enemy!
+                if (targetEnemy == null)
+                {
+                    targetEnemy = enemy;
+                }
+                else
+                {
+                    if (Vector3.Distance(transform.position, enemy.transform.position) <
+                        Vector3.Distance(transform.position, targetEnemy.transform.position))
+                    {
+                        // Closer!
+                        targetEnemy = enemy;
+                    }
+                }
+            }
+        }
+
+        if (targetEnemy != null)
+        {
+            Vector3 directionToClosestEnemy = (targetEnemy.transform.position - mainCamera.transform.position).normalized;
+
+            enemyClosestSpawnPositionIndicator.anchoredPosition = directionToClosestEnemy * 250;
+            enemyClosestSpawnPositionIndicator.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVector(directionToClosestEnemy));
+
+            float distanceToClosestEnemy = Vector3.Distance(targetEnemy.transform.position, mainCamera.transform.position);
+            enemyClosestSpawnPositionIndicator.gameObject.SetActive(distanceToClosestEnemy > mainCamera.orthographicSize * 1.5f);
+        }
+
+        else
+        {
+            // NO enemies alives
+            enemyClosestSpawnPositionIndicator.gameObject.SetActive(false);
+        }
     }
 
 
