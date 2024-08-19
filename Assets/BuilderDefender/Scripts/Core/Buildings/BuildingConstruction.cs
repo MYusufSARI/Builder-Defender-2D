@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,7 @@ public class BuildingConstruction : MonoBehaviour
     [Header(" Elements ")]
     private BoxCollider2D boxCollider2D;
     private SpriteRenderer spriteRenderer;
+    private Material constructionMaterial;  
 
 
     [Header(" Settings ")]
@@ -33,6 +34,7 @@ public class BuildingConstruction : MonoBehaviour
 
     [Header(" Consts ")]
     private const string SPRITE = "Sprite";
+    private const string PROGRESS = "_Progress";
 
 
 
@@ -43,13 +45,16 @@ public class BuildingConstruction : MonoBehaviour
         spriteRenderer = transform.Find(SPRITE).GetComponent<SpriteRenderer>();
 
         buildingTypeHolder = GetComponent<BuildingTypeHolder>();
-    }
 
+        constructionMaterial = spriteRenderer.material;
+    }
 
 
     private void Update()
     {
         constructionTimer -= Time.deltaTime;
+
+        constructionMaterial.SetFloat(PROGRESS, GetConstructionTimerNormalize());
 
         if (constructionTimer <= 0f)
         {
