@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingDemolishButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header(" Data ")]
+    [SerializeField] private Building building ;
 
-    // Update is called once per frame
-    void Update()
+
+    [Header(" Consts ")]
+    private const string BUTTON = "Button";
+
+
+
+    private void Awake()
     {
-        
+        transform.Find(BUTTON).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            Destroy(building.gameObject);
+        });      
     }
 }
