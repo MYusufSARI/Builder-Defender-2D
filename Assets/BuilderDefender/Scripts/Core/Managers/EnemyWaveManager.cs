@@ -10,13 +10,20 @@ public class EnemyWaveManager : MonoBehaviour
         SpawningWave,
     }
 
+    [Header(" State ")]
     private State _state;
+
+
+    [Header(" Elements ")]
+    [SerializeField] private Transform spawnPositionTransform;
+    private Vector3 spawnPosition;
+
 
     [Header(" Settings ")]
     private float nextWaveSpawnTimer;
     private float nextEnemySpawnTimer;
     private int remainingEnemySpawnAmount;
-    private Vector3 spawnPosition;
+
 
 
     private void Start()
@@ -71,7 +78,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
-        spawnPosition = new Vector3(-40, 0);
+        spawnPosition = spawnPositionTransform.position;
 
         nextWaveSpawnTimer = 10f;
 
