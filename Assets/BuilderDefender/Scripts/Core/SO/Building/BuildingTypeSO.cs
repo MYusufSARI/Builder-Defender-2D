@@ -23,6 +23,8 @@ public class BuildingTypeSO : ScriptableObject
 
     public int healthAmountMax;
 
+    public float constructionTimerMax;
+
 
 
 
