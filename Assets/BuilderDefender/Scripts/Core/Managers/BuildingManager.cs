@@ -74,13 +74,6 @@ public class BuildingManager : MonoBehaviour
 
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector3 enemySpawnPosition = UtilsClass.GetMouseWorldPosition() + UtilsClass.GetRandomDirection() * 5f;
-
-            Enemy.Create(enemySpawnPosition);
-        }
     }
 
 
