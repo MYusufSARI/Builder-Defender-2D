@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuildingDemolishButton : MonoBehaviour
 {
     [Header(" Data ")]
-    [SerializeField] private Building building ;
+    [SerializeField] private Building building;
 
 
     [Header(" Consts ")]
@@ -18,7 +18,14 @@ public class BuildingDemolishButton : MonoBehaviour
     {
         transform.Find(BUTTON).GetComponent<Button>().onClick.AddListener(() =>
         {
+            BuildingTypeSO buildingType = building.GetComponent<BuildingTypeHolder>().buildingType;
+
+            foreach (ResourceAmount resourceAmount in buildingType.constructionResourceCostArray)
+            {
+                ResourceManager.Instance.AddResource(resourceAmount.resourceType, Mathf.FloorToInt(resourceAmount._amount * 0.6f));
+            }
+
             Destroy(building.gameObject);
-        });      
+        });
     }
 }
