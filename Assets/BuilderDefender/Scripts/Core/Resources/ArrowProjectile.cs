@@ -16,7 +16,7 @@ public class ArrowProjectile : MonoBehaviour
     }
 
 
-    [Header(" Elements ")]
+    [Header(" Data ")]
     private Enemy targetEnemy;
 
 

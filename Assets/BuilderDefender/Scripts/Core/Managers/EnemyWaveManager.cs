@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyWaveManager : MonoBehaviour
 {
@@ -25,6 +27,10 @@ public class EnemyWaveManager : MonoBehaviour
     private float nextEnemySpawnTimer;
     private int remainingEnemySpawnAmount;
     private int waveNumber;
+
+
+    [Header(" Events ")]
+    public static Action onWaveNumberChanged;
 
 
 
@@ -75,6 +81,8 @@ public class EnemyWaveManager : MonoBehaviour
                             _state = State.WaitingToSpawnNextWave;
 
                             spawnPosition = spawnPositionTransformList[Random.Range(0, spawnPositionTransformList.Count)].position;
+                            nextWaveSpawnPosition.position = spawnPosition;
+                            nextWaveSpawnTimer = 10f;
                         }
                     }
                 }
@@ -85,12 +93,24 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
-        nextWaveSpawnTimer = 10f;
-
         remainingEnemySpawnAmount = 5 + 3 * waveNumber;
 
         _state = State.SpawningWave;
 
         waveNumber++;
+
+        onWaveNumberChanged?.Invoke();
+    }
+
+
+    public int GetWaveNumber()
+    {
+        return waveNumber;
+    }
+
+
+    public float GetNextWaveSpawnTimer()
+    {
+        return nextWaveSpawnTimer;
     }
 }

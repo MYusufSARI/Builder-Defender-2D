@@ -9,8 +9,11 @@ public class BuildingManager : MonoBehaviour
     public static BuildingManager Instance { get; private set; }
 
     [Header(" Elements ")]
-    [SerializeField] private Building hqBuilding;
     private Camera mainCamera;
+
+
+    [Header(" Data ")]
+    [SerializeField] private Building hqBuilding;
     private BuildingTypeListSO buildingTypeList;
     private BuildingTypeSO activeBuildingType;
 

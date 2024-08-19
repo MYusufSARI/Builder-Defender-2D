@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     [Header(" Elements ")]
     private Transform targetTransform;
     private Rigidbody2D rigidbody2D;
+
+
+    [Header(" Data ")]
     private HealthManager healthManager;
 
 

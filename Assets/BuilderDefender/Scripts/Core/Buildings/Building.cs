@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    [Header(" Elements ")]
+    [Header(" Data ")]
     private HealthManager healthManager;
     private BuildingTypeSO buildingType;
 

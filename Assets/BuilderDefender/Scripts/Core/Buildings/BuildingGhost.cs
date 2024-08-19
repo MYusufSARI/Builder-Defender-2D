@@ -7,6 +7,9 @@ public class BuildingGhost : MonoBehaviour
 {
     [Header(" Elements ")]
     private GameObject spriteGameObject;
+
+
+    [Header(" Data ")]
     private ResourceNearbyOverlay resourceNearbyOverlay;
 
 

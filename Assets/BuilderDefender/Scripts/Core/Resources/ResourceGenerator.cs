@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    [Header(" Elements ")]
+    [Header(" Data ")]
     private ResourceGeneratorData resourceGeneratorData;
 
 
