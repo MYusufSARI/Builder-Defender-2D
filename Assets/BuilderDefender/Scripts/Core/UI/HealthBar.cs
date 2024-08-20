@@ -24,6 +24,7 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         healthManager.OnDamaged += OnDamagedCallback;
+        healthManager.OnHealed += OnHealedCallback;
 
         UpdateBar();
         UpdateHealthBarVisible();
@@ -33,6 +34,14 @@ public class HealthBar : MonoBehaviour
     private void OnDestroy()
     {
         healthManager.OnDamaged -= OnDamagedCallback;
+        healthManager.OnHealed -= OnHealedCallback;
+    }
+
+
+    private void OnHealedCallback(object sender, EventArgs e)
+    {
+        UpdateBar();
+        UpdateHealthBarVisible();
     }
 
 

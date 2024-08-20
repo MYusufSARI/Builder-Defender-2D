@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 380611270655775089}
   - component: {fileID: 6474543760498434483}
   - component: {fileID: 6604738795556689389}
-  - component: {fileID: 7470980255572738826}
+  - component: {fileID: 225199342347565944}
   m_Layer: 5
-  m_Name: PF_BuildingDemolishButton
+  m_Name: PF_BuildingRepairButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6604738795556689389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7470980255572738826
+--- !u!114 &225199342347565944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,10 +112,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 589568844833975562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28767ca79de0f44a2ac05dc6245dd613, type: 3}
+  m_Script: {fileID: 11500000, guid: b6753401caa6f4aff84009e0748b3970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  building: {fileID: 0}
+  healthManager: {fileID: 0}
+  goldResourceType: {fileID: 11400000, guid: 99d9f509f281b4395b4e55591a5e835e, type: 2}
 --- !u!1 &2895034447265553984
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 911be4113ef67354dacd8b3542ff497a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d921b7cb87c53d94cb0ec38875bfb4ac, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.119927004, b: 0.119927004, a: 1}
+  m_Color: {r: 0.12156862, g: 0.7254902, b: 0.23247696, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

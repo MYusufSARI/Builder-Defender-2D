@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
         healthManager = GetComponent<HealthManager>();
 
-        if (BuildingManager.Instance.GetHQBuilding())
+        if (BuildingManager.Instance.GetHQBuilding() != null)
         {
             targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
         }

@@ -41,19 +41,15 @@ public class BuildingManager : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        hqBuilding.GetComponent<HealthManager>().OnDied += OnDiedCallback;
+        hqBuilding.GetComponent<HealthManager>().OnDied += HQOnDiedCallback;
     }
 
 
-    private void OnDestroy()
-    {
-        hqBuilding.GetComponent<HealthManager>().OnDied -= OnDiedCallback;
-    }
 
 
-    private void OnDiedCallback(object sender, EventArgs e)
+    private void HQOnDiedCallback(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        GameOverUI.Instance.Show();
     }
 
  
