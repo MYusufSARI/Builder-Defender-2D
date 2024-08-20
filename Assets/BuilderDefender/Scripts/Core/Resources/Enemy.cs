@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
 
         healthManager.OnDied += OnDiedCallback;
-        healthManager.OnDamaged += OnDamagedCallback;
     }
 
    
@@ -52,21 +51,12 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         healthManager.OnDied -= OnDiedCallback;
-        healthManager.OnDamaged -= OnDamagedCallback;
     }
 
 
     private void OnDiedCallback(object sender, System.EventArgs e)
     {
-        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
-
         Destroy(gameObject);
-    }
-
-
-    private void OnDamagedCallback(object sender, System.EventArgs e)
-    {
-        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 
 

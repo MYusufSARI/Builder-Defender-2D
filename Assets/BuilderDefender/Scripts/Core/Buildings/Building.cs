@@ -65,15 +65,12 @@ public class Building : MonoBehaviour
     {
         ShowBuildingRepairButton();
 
-        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
 
     }
 
 
     private void OnDiedCallback(object sender, EventArgs e)
     {
-        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
-
         Destroy(gameObject);
     }
 
