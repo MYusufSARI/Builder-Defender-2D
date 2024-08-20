@@ -40,9 +40,23 @@ public class BuildingManager : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+
+        hqBuilding.GetComponent<HealthManager>().OnDied += OnDiedCallback;
     }
 
 
+    private void OnDestroy()
+    {
+        hqBuilding.GetComponent<HealthManager>().OnDied -= OnDiedCallback;
+    }
+
+
+    private void OnDiedCallback(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+ 
     private void Update()
     {
         ManageSpawning();
