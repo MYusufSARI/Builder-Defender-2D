@@ -39,7 +39,7 @@ public class OptionsUI : MonoBehaviour
         {
             musicManager.DecreaseVolume();
 
-            UpdateText(); 
+            UpdateText();
         });
     }
 
@@ -47,11 +47,28 @@ public class OptionsUI : MonoBehaviour
     private void Start()
     {
         UpdateText();
+        gameObject.SetActive(false);
     }
 
 
     private void UpdateText()
     {
         musicText.SetText(Mathf.RoundToInt(musicManager.GetVolume() * 10).ToString());
+    }
+
+
+    public void ToggleVisible()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+
+        if (gameObject.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
