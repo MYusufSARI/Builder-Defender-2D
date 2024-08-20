@@ -60,6 +60,7 @@ public class BuildingConstruction : MonoBehaviour
         {
             Debug.Log("Ding!");
             Instantiate(buildingType._prefab, transform.position, Quaternion.identity);
+            SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
             Destroy(gameObject);
         }
     }

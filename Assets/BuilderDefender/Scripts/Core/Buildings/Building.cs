@@ -64,11 +64,16 @@ public class Building : MonoBehaviour
     private void OnDamagedCallback(object sender, EventArgs e)
     {
         ShowBuildingRepairButton();
+
+        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
+
     }
 
 
     private void OnDiedCallback(object sender, EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
+
         Destroy(gameObject);
     }
 
