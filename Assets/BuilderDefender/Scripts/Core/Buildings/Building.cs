@@ -64,6 +64,9 @@ public class Building : MonoBehaviour
     private void OnDamagedCallback(object sender, EventArgs e)
     {
         ShowBuildingRepairButton();
+        CinemachineShake.Instance.ShakeCamera(7f, 0.15f);
+
+        ChromaticAberrationEffect.Instance.SetWeight(1f);
     }
 
 
@@ -71,8 +74,11 @@ public class Building : MonoBehaviour
     {
         Instantiate(Resources.Load("PF_BuildingDestroyedParticles"), transform.position, Quaternion.identity);
 
-
         Destroy(gameObject);
+
+        CinemachineShake.Instance.ShakeCamera(10f, 0.2f);
+
+        ChromaticAberrationEffect.Instance.SetWeight(1f);
     }
 
 

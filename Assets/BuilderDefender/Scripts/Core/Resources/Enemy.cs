@@ -41,21 +41,33 @@ public class Enemy : MonoBehaviour
             targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
         }
 
+        healthManager.OnDamaged += OnDamagedCallback;
         healthManager.OnDied += OnDiedCallback;
 
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
     }
 
-   
 
     private void OnDestroy()
     {
+        healthManager.OnDamaged -= OnDamagedCallback;
         healthManager.OnDied -= OnDiedCallback;
+    }
+
+
+    private void OnDamagedCallback(object sender, System.EventArgs e)
+    {
+        CinemachineShake.Instance.ShakeCamera(4f, 0.07f);
+        ChromaticAberrationEffect.Instance.SetWeight(0.5f);
     }
 
 
     private void OnDiedCallback(object sender, System.EventArgs e)
     {
+        CinemachineShake.Instance.ShakeCamera(7f, 0.15f);
+
+        ChromaticAberrationEffect.Instance.SetWeight(0.5f);
+
         Instantiate(Resources.Load<Transform>("PF_EnemyDieParticles"), transform.position, Quaternion.identity);
 
         Destroy(gameObject);
