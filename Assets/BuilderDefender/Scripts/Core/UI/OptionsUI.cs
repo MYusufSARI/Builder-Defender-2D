@@ -10,6 +10,7 @@ public class OptionsUI : MonoBehaviour
     private const string VOLUME_UP_BUTTON = "VolumeUpButton";
     private const string VOLUME_DOWN_BUTTON = "VolumeDownButton";
     private const string VOLUME_VALUE_TEXT = "VolumeValueText";
+    private const string MAIN_MENU_BUTTON = "MainMenuButton";
 
 
     [Header(" Settings ")]
@@ -40,6 +41,11 @@ public class OptionsUI : MonoBehaviour
             musicManager.DecreaseVolume();
 
             UpdateText();
+        });
+
+        transform.Find(MAIN_MENU_BUTTON).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            GameSceneManager.Load(GameSceneManager.Scene.MainMenuScene);
         });
     }
 
