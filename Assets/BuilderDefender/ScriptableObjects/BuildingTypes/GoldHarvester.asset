@@ -25,8 +25,8 @@ MonoBehaviour:
   maxConstructionRadius: 25
   constructionResourceCostArray:
   - resourceType: {fileID: 11400000, guid: 3d36a008a41ba41b595899344c26d4b9, type: 2}
-    _amount: 50
+    _amount: 200
   - resourceType: {fileID: 11400000, guid: 13e85804ae4f34e46b225ee6e93855b8, type: 2}
-    _amount: 50
+    _amount: 200
   healthAmountMax: 100
-  constructionTimerMax: 5
+  constructionTimerMax: 15
