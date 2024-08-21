@@ -26,6 +26,8 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        edgeScrolling = PlayerPrefs.GetInt("edgeScrolling", 1) == 1;
     }
 
 
@@ -105,6 +107,8 @@ public class CameraManager : MonoBehaviour
     public void SetEdgeScrolling(bool edgeScrolling)
     {
         this.edgeScrolling = edgeScrolling;
+
+        PlayerPrefs.SetInt("edgeScrolling", edgeScrolling ? 1 : 0);
     }
 
 
