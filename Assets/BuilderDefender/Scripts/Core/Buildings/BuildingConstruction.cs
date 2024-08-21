@@ -47,6 +47,8 @@ public class BuildingConstruction : MonoBehaviour
         buildingTypeHolder = GetComponent<BuildingTypeHolder>();
 
         constructionMaterial = spriteRenderer.material;
+
+        Instantiate(Resources.Load("PF_BuildingPlacedParticles"), transform.position, Quaternion.identity);
     }
 
 
@@ -60,6 +62,9 @@ public class BuildingConstruction : MonoBehaviour
         {
             Debug.Log("Ding!");
             Instantiate(buildingType._prefab, transform.position, Quaternion.identity);
+
+            Instantiate(Resources.Load("PF_BuildingPlacedParticles"), transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }

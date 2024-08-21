@@ -64,13 +64,14 @@ public class Building : MonoBehaviour
     private void OnDamagedCallback(object sender, EventArgs e)
     {
         ShowBuildingRepairButton();
-
-
     }
 
 
     private void OnDiedCallback(object sender, EventArgs e)
     {
+        Instantiate(Resources.Load("PF_BuildingDestroyedParticles"), transform.position, Quaternion.identity);
+
+
         Destroy(gameObject);
     }
 
