@@ -30,7 +30,7 @@ public class ResourceNearbyOverlay : MonoBehaviour
 
     private void ConvertPercentage()
     {
-        int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, transform.position);
+        int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, transform.position - transform.localPosition);
         float percent = Mathf.RoundToInt((float)nearbyResourceAmount / resourceGeneratorData.maxResourceAmount * 100f);
 
         transform.Find(TEXT).GetComponent<TextMeshPro>().SetText(percent + "%");

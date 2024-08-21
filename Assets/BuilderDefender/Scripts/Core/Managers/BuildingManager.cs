@@ -52,7 +52,7 @@ public class BuildingManager : MonoBehaviour
         GameOverUI.Instance.Show();
     }
 
- 
+
     private void Update()
     {
         ManageSpawning();
@@ -139,6 +139,17 @@ public class BuildingManager : MonoBehaviour
             }
         }
 
+        if (buildingType.hasResourceGeneratorData)
+        {
+            ResourceGeneratorData resourceGeneratorData = buildingType.resourceGeneratorData;
+            int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, position);
+
+            if (nearbyResourceAmount == 0)
+            {
+                errorMessage = "There are no nearby Resource Nodes!";
+                return false;
+            }
+        }
 
         collider2DArray = Physics2D.OverlapCircleAll(position, buildingType.maxConstructionRadius);
 
