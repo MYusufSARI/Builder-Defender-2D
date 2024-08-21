@@ -41,9 +41,9 @@ public class Enemy : MonoBehaviour
             targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
         }
 
-        lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
-
         healthManager.OnDied += OnDiedCallback;
+
+        lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
     }
 
    
@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDiedCallback(object sender, System.EventArgs e)
     {
+        Instantiate(Resources.Load<Transform>("PF_EnemyDieParticles"), transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
@@ -78,7 +80,8 @@ public class Enemy : MonoBehaviour
             HealthManager healthManager = building.GetComponent<HealthManager>();
 
             healthManager.Damage(10);
-            Destroy(gameObject);
+
+            this.healthManager.Damage(999);
         }
     }
 
