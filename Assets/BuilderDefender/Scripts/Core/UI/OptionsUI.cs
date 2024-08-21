@@ -11,6 +11,7 @@ public class OptionsUI : MonoBehaviour
     private const string VOLUME_DOWN_BUTTON = "VolumeDownButton";
     private const string VOLUME_VALUE_TEXT = "VolumeValueText";
     private const string MAIN_MENU_BUTTON = "MainMenuButton";
+    private const string EDGE_SCROLLING_TOGGLE = "EdgeScrollingToggle";
 
 
     [Header(" Settings ")]
@@ -23,6 +24,7 @@ public class OptionsUI : MonoBehaviour
 
     [Header(" Data ")]
     [SerializeField] private MusicManager musicManager;
+
 
 
     private void Awake()
@@ -48,6 +50,11 @@ public class OptionsUI : MonoBehaviour
             Time.timeScale = 1f;
             GameSceneManager.Load(GameSceneManager.Scene.MainMenuScene);
         });
+
+        transform.Find(EDGE_SCROLLING_TOGGLE).GetComponent<Toggle>().onValueChanged.AddListener((bool set) =>
+        {
+            CameraManager.Instance.SetEdgeScrolling(set);
+        });
     }
 
 
@@ -55,6 +62,8 @@ public class OptionsUI : MonoBehaviour
     {
         UpdateText();
         gameObject.SetActive(false);
+
+        transform.Find(EDGE_SCROLLING_TOGGLE).GetComponent<Toggle>().SetIsOnWithoutNotify(CameraManager.Instance.GetEdgeScrolling());
     }
 
 

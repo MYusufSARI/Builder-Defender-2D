@@ -5,14 +5,28 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
+    public static CameraManager Instance { get; private set; }
+
     [Header(" Elements ")]
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private PolygonCollider2D cameraBoundsCollider2D;
+
+
+    [Header(" Settings ")]
+    private float moveSpeed = 30f;
+    private bool edgeScrolling;
 
 
     [Header(" Data ")]
     private float orthographicSize;
     private float targetOrthographicSize;
 
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     private void Start()
@@ -35,10 +49,38 @@ public class CameraManager : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDir = new Vector3(x, y).normalized;
-        float moveSpeed = 30f;
+        if (edgeScrolling)
+        {
+            float edgeScrollingSize = 30;
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+            if (Input.mousePosition.x > Screen.width - edgeScrollingSize)
+            {
+                x = +1f;
+            }
+
+            if (Input.mousePosition.x < edgeScrollingSize)
+            {
+                x = -1f;
+            }
+
+            if (Input.mousePosition.y > Screen.height - edgeScrollingSize)
+            {
+                y = +1f;
+            }
+
+            if (Input.mousePosition.y < edgeScrollingSize)
+            {
+                y = -1f;
+            }
+        }
+
+        Vector3 moveDir = new Vector3(x, y).normalized;
+
+        Vector3 movementVector = transform.position + (moveDir * moveSpeed * Time.deltaTime);
+        if (cameraBoundsCollider2D.bounds.Contains(movementVector))
+        {
+            transform.position = movementVector;
+        }
     }
 
 
@@ -58,5 +100,16 @@ public class CameraManager : MonoBehaviour
         orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
+    }
+
+    public void SetEdgeScrolling(bool edgeScrolling)
+    {
+        this.edgeScrolling = edgeScrolling;
+    }
+
+
+    public bool GetEdgeScrolling()
+    {
+        return edgeScrolling;
     }
 }
